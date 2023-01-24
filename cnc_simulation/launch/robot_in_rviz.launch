@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find ur5e_description)/urdf/ur5e_with_new_rg2.xacro" />
+    <param name="use_gui" value="true" />
+
+    <node name="JSP" pkg="joint_state_publisher" type="joint_state_publisher" output="screen"/>
+    <node name="JSP_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" output="screen"/>
+    <node name="RSP" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+
+    <node name="rviz_gui" pkg="rviz" type="rviz" output="screen" required="true"
+          args="-d $(find cnc_simulation)/rviz/ur5e_joint_states.rviz" />
+
+</launch>

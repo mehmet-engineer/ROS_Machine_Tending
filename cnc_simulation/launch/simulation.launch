@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- <include file="$(find cnc_simulation)/launch/cnc_simulation_new_rg2.launch" /> -->
+    <!-- <rosparam command="load" file="$(find cnc_simulation)/config/gripper_params.yaml" /> -->
+    <!-- <node name="rg2_gripper_control" pkg="cnc_simulation" type="rg2_gripper_control.py" output="screen" /> -->
+    <node name="main_algorithm" pkg="cnc_simulation" type="main_algorithm.py" output="screen" />
+
+</launch>

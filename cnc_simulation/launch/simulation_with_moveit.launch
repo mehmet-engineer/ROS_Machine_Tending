@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <include file="$(find cnc_simulation)/launch/cnc_sim_for_moveit.launch" />
+    <include file="$(find ur_moveit)/launch/move_group.launch" />
+
+</launch>
