@@ -1,0 +1,8 @@
+<launch>
+
+    <include file="$(find ur_moveit)/launch/gazebo.launch" />
+    <include file="$(find ur_moveit)/launch/move_group.launch" />
+
+  
+</launch>
+  

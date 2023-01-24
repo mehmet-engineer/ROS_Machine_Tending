@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5e" >
+
+  <!-- including ur5e and rg2 gripper -->
+  <xacro:include filename="$(find ur5e_description)/urdf/ur5e.xacro" />
+  <xacro:include filename="$(find new_rg2_description)/urdf/rg2.urdf.xacro" />
+
+  <joint name="hand_joint" type="fixed">
+    <origin rpy="1.57 -1.57 0" xyz="0 0 0"/>
+    <parent link="tool0"/>
+    <child link="hand_link"/>
+  </joint>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"> </plugin>
+  </gazebo>
+
+</robot>

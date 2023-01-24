@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5e" >
+
+  <!-- including ur5e and rg2 gripper -->
+  <xacro:include filename="$(find ur5e_description)/urdf/ur5e.xacro" />
+  <xacro:include filename="$(find rg2_description)/urdf/rg2.urdf.xacro" />
+
+  <!-- using ur5e and rg2 gripper -->
+  <xacro:rg2 />
+
+  <joint name="gripper_extender_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="tool0"/>
+    <child link="gripper_extender_link"/>
+  </joint>
+
+  <link name="gripper_extender_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <material name="White">
+        <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    </collision>
+    <inertial>
+      <mass value="0.6"/>
+      <inertia ixx="1" ixy="0.0" ixz="0.0" iyy="1" iyz="0.0" izz="1"/>
+    </inertial>
+  </link>
+
+  <!-- Gazebo grasping plugin -->
+  <gazebo>
+    <gripper name="gazebo_gripper">
+      <grasp_check>
+        <attach_steps>2</attach_steps>    <!-- default: 20 -->
+        <detach_steps>2</detach_steps>    <!-- default: 40 -->
+        <min_contact_count>3</min_contact_count>
+      </grasp_check>
+      <gripper_link>rg2_body_link</gripper_link>
+      <palm_link>gripper_extender_link</palm_link>
+    </gripper>
+  </gazebo>
+
+  <!-- gazebo ros control -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"> </plugin>
+  </gazebo>
+
+</robot>
